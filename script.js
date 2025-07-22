@@ -5,13 +5,13 @@ function getComputerChoice() {
     let computerChoice = Math.random()
 
     if (computerChoice <= 0.3) {
-        return computerChoice
+        return 'paper'
     }
     else if (computerChoice > 0.3 && computerChoice < 0.6) {
-        return computerChoice
+        return 'rock'
     }
     else {
-        return computerChoice
+        return 'scissors'
     }
 }
 
@@ -19,10 +19,10 @@ function getHumanChoice() {
     let humanChoice = prompt('Rock, paper or scissors?')
 
     if (humanChoice.toLowerCase() === 'paper') {
-        return 0
+        return 'paper'
     }
     else if (humanChoice.toLowerCase() === 'rock') {
-        return 0.3
+        return 'rock'
     }
     else if (humanChoice.toLowerCase() === 'scissors') {
         return 'scissors'
@@ -30,8 +30,23 @@ function getHumanChoice() {
 }
 
 function playRound(humanChoice, computerChoice) {
+    console.log(humanChoice)
+    console.log(computerChoice)
+
     if (humanChoice === computerChoice) {
-        return alert('No winner - No looser! Try again')
+        return alert('No winner - No looser! Try again.')
+    }
+    else if (humanChoice === 'rock' && computerChoice === 'scissors') {
+        return alert('Congratulation! You are winner!')
+    }
+    else if (humanChoice === 'paper' && computerChoice === 'rock') {
+        return alert('Congratulation! You are winner!')
+    }
+    else if (humanChoice === 'scissors' && computerChoice === 'paper') {
+        return alert('Congratulation! You are winner!')
+    }
+    else {
+        return alert('You loose! ' + computerChoice.replace(/^./, computerChoice[0].toUpperCase()) + ' beats ' + humanChoice.replace(/^./, humanChoice[0].toUpperCase()) + '!')
     }
 }
 
