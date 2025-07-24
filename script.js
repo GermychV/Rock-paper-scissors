@@ -30,27 +30,42 @@ function getHumanChoice() {
 }
 
 function playRound(humanChoice, computerChoice) {
-    console.log(humanChoice)
-    console.log(computerChoice)
-
     if (humanChoice === computerChoice) {
+        humanScore += 1;
+        computerScore += 1;
         return alert('No winner - No looser! Try again.')
     }
     else if (humanChoice === 'rock' && computerChoice === 'scissors') {
-        return alert('Congratulation! You are winner!')
+        humanScore += 1;
+        return alert('You are winner!' + humanChoice.replace(/^./, humanChoice[0].toUpperCase()) + ' beats ' + computerChoice.replace(/^./, computerChoice[0].toUpperCase()) + '!'), humanScore
     }
     else if (humanChoice === 'paper' && computerChoice === 'rock') {
-        return alert('Congratulation! You are winner!')
+        humanScore += 1;
+        return alert('You are winner!' + humanChoice.replace(/^./, humanChoice[0].toUpperCase()) + ' beats ' + computerChoice.replace(/^./, computerChoice[0].toUpperCase()) + '!'), humanScore
     }
     else if (humanChoice === 'scissors' && computerChoice === 'paper') {
-        return alert('Congratulation! You are winner!')
+        humanScore += 1;
+        return alert('You are winner!' + humanChoice.replace(/^./, humanChoice[0].toUpperCase()) + ' beats ' + computerChoice.replace(/^./, computerChoice[0].toUpperCase()) + '!'), humanScore
     }
     else {
-        return alert('You loose! ' + computerChoice.replace(/^./, computerChoice[0].toUpperCase()) + ' beats ' + humanChoice.replace(/^./, humanChoice[0].toUpperCase()) + '!')
+        computerScore += 1;
+        return alert('You loose! ' + computerChoice.replace(/^./, computerChoice[0].toUpperCase()) + ' beats ' + humanChoice.replace(/^./, humanChoice[0].toUpperCase()) + '!'), computerScore
     }
 }
 
-const humanSelection = getHumanChoice()
-const computerSelection = getComputerChoice()
 
-playRound(humanSelection, computerSelection)
+console.log(humanScore)
+console.log(computerScore)
+// playRound(humanSelection, computerSelection)
+
+function playGame() {
+    for (let i = 0; i < 5; i++) {
+        const humanSelection = getHumanChoice()
+        const computerSelection = getComputerChoice()
+        const currentRound = playRound(humanSelection, computerSelection)
+        console.log(currentRound)
+    }
+    
+}
+
+playGame()
