@@ -1,5 +1,6 @@
 let humanScore = 0
 let computerScore = 0
+let roundWinner = ''
 
 function getComputerChoice() {
     let computerChoice = Math.random()
@@ -33,22 +34,31 @@ function playRound(humanChoice) {
     const computerSelection = getComputerChoice()
     humanChoice = String(humanChoice.target.id)
     if (humanChoice === computerSelection) {
-        return alert('No winner - No looser! Try again.')
+        return roundWinner = 'tie'
     }
     else if ((humanChoice === 'rock' && computerSelection === 'scissors') ||
             (humanChoice === 'paper' && computerSelection === 'rock') ||
             (humanChoice === 'scissors' && computerSelection === 'paper')) {
         humanScore ++;
-        return alert('You are winner! ' + capitalizeFirstLetter(humanChoice) + ' beats ' + capitalizeFirstLetter(computerSelection) + '!'), humanScore
     }
     else {
         computerScore ++;
-        return alert('You loose! ' + capitalizeFirstLetter(computerSelection) + ' beats ' + capitalizeFirstLetter(humanChoice)), computerScore
     }
+    updateScore(humanScore, computerScore)
 }
 
+// alert('You are winner! ' + capitalizeFirstLetter(humanChoice) + ' beats ' + capitalizeFirstLetter(computerSelection) + '!')
+// alert('You loose! ' + capitalizeFirstLetter(computerSelection) + ' beats ' + capitalizeFirstLetter(humanChoice))
+
 const button = document.querySelector(".container-buttons")
+const playerScore = document.querySelector('.playerScore')
+const computerSc = document.querySelector('.computerScore')
 button.addEventListener("click", playRound)
+
+function updateScore() {
+    playerScore.textContent = `Player: ${humanScore}`
+    computerSc.textContent = `Computer: ${computerScore}`
+}
 
 function capitalizeFirstLetter (String) {
     return String.replace(/^./, String[0].toUpperCase())
