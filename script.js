@@ -1,6 +1,6 @@
 let humanScore = 0
 let computerScore = 0
-let roundWinner = ''
+// let roundWinner = ''
 
 function getComputerChoice() {
     let computerChoice = Math.random()
@@ -48,7 +48,7 @@ function playRound(humanChoice) {
     if (isGameOver()) {
         return humanScore > computerScore
             ? gameOverTitle.textContent = "You are winner!"
-            : gameOverTitle.textContent = "You lose!"
+            : gameOverTitle.textContent = "You lose!", reloadGame()
     }
 }
 
@@ -73,4 +73,18 @@ function isGameOver() {
 
 function capitalizeFirstLetter (String) {
     return String.replace(/^./, String[0].toUpperCase())
+}
+
+function reloadGame() {
+    const reloadBtn = document.createElement('button')
+    reloadBtn.textContent = 'Reload'
+    body.appendChild(reloadBtn)
+    reloadBtn.addEventListener('click', () => {
+        humanScore = 0;
+        computerScore = 0;
+        gameOverTitle.textContent = ''
+        playerScore.textContent = `Player: 0`
+        computerSc.textContent = `Computer: 0`
+        reloadBtn.remove()
+    })
 }
