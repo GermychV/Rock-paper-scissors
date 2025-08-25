@@ -45,19 +45,30 @@ function playRound(humanChoice) {
         computerScore ++;
     }
     updateScore(humanScore, computerScore)
+    if (isGameOver()) {
+        return humanScore > computerScore
+            ? gameOverTitle.textContent = "You are winner!"
+            : gameOverTitle.textContent = "You lose!"
+    }
 }
 
 // alert('You are winner! ' + capitalizeFirstLetter(humanChoice) + ' beats ' + capitalizeFirstLetter(computerSelection) + '!')
 // alert('You loose! ' + capitalizeFirstLetter(computerSelection) + ' beats ' + capitalizeFirstLetter(humanChoice))
 
+const body = document.querySelector('body')
 const button = document.querySelector(".container-buttons")
 const playerScore = document.querySelector('.playerScore')
 const computerSc = document.querySelector('.computerScore')
+const gameOverTitle = document.querySelector('h3')
 button.addEventListener("click", playRound)
 
 function updateScore() {
     playerScore.textContent = `Player: ${humanScore}`
     computerSc.textContent = `Computer: ${computerScore}`
+}
+
+function isGameOver() {
+    return humanScore === 5 || computerScore === 5
 }
 
 function capitalizeFirstLetter (String) {
