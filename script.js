@@ -29,59 +29,27 @@ function getHumanChoice(event) {
     }
 }
 
-function playRound(humanChoice, computerChoice) {
-    if (humanChoice === computerChoice) {
-        humanScore += 1;
-        computerScore += 1;
+function playRound(humanChoice) {
+    const computerSelection = getComputerChoice()
+    humanChoice = String(humanChoice.target.id)
+    if (humanChoice === computerSelection) {
         return alert('No winner - No looser! Try again.')
     }
-    else if (humanChoice === 'rock' && computerChoice === 'scissors') {
-        humanScore += 1;
-        return alert('You are winner!' + humanChoice.replace(/^./, humanChoice[0].toUpperCase()) + ' beats ' + computerChoice.replace(/^./, computerChoice[0].toUpperCase()) + '!'), humanScore
-    }
-    else if (humanChoice === 'paper' && computerChoice === 'rock') {
-        humanScore += 1;
-        return alert('You are winner!' + humanChoice.replace(/^./, humanChoice[0].toUpperCase()) + ' beats ' + computerChoice.replace(/^./, computerChoice[0].toUpperCase()) + '!'), humanScore
-    }
-    else if (humanChoice === 'scissors' && computerChoice === 'paper') {
-        humanScore += 1;
-        return alert('You are winner!' + humanChoice.replace(/^./, humanChoice[0].toUpperCase()) + ' beats ' + computerChoice.replace(/^./, computerChoice[0].toUpperCase()) + '!'), humanScore
+    else if ((humanChoice === 'rock' && computerSelection === 'scissors') ||
+            (humanChoice === 'paper' && computerSelection === 'rock') ||
+            (humanChoice === 'scissors' && computerSelection === 'paper')) {
+        humanScore ++;
+        return alert('You are winner! ' + capitalizeFirstLetter(humanChoice) + ' beats ' + capitalizeFirstLetter(computerSelection) + '!'), humanScore
     }
     else {
-        computerScore += 1;
-        return alert('You loose! ' + computerChoice.replace(/^./, computerChoice[0].toUpperCase()) + ' beats ' + humanChoice.replace(/^./, humanChoice[0].toUpperCase()) + '!'), computerScore
+        computerScore ++;
+        return alert('You loose! ' + capitalizeFirstLetter(computerSelection) + ' beats ' + capitalizeFirstLetter(humanChoice)), computerScore
     }
-}
-
-
-// console.log(humanScore)
-// console.log(computerScore)
-
-
-// playRound(humanSelection, computerSelection)
-// function playGame() {
-//     for (let i = 0; i < 5; i++) {
-//         const humanSelection = getHumanChoice()
-//         const computerSelection = getComputerChoice()
-//         const currentRound = playRound(humanSelection, computerSelection)
-//         console.log(currentRound)
-//     }
-// }
-// playGame()
-
-
-function sumOfTripledEvens(array) {
-  return array
-    .filter((num) => num % 2 === 0)
-    .map((num) => num * 3)
-    .reduce((acc, curr) => acc + curr)
 }
 
 const button = document.querySelector(".container-buttons")
+button.addEventListener("click", playRound)
 
-function clickButton (event) {
-    alert('rock')
-    console.log(event.target.value)
+function capitalizeFirstLetter (String) {
+    return String.replace(/^./, String[0].toUpperCase())
 }
-
-button.addEventListener("click", getHumanChoice)
