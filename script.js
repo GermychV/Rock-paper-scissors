@@ -15,16 +15,16 @@ function getComputerChoice() {
     }
 }
 
-function getHumanChoice() {
-    let humanChoice = prompt('Rock, paper or scissors?')
+function getHumanChoice(event) {
+    let humanChoice = event.target.id
 
-    if (humanChoice.toLowerCase() === 'paper') {
+    if (humanChoice === 'paper') {
         return 'paper'
     }
-    else if (humanChoice.toLowerCase() === 'rock') {
+    else if (humanChoice === 'rock') {
         return 'rock'
     }
-    else if (humanChoice.toLowerCase() === 'scissors') {
+    else if (humanChoice === 'scissors') {
         return 'scissors'
     }
 }
@@ -54,21 +54,21 @@ function playRound(humanChoice, computerChoice) {
 }
 
 
-console.log(humanScore)
-console.log(computerScore)
+// console.log(humanScore)
+// console.log(computerScore)
+
+
 // playRound(humanSelection, computerSelection)
-
-function playGame() {
-    for (let i = 0; i < 5; i++) {
-        const humanSelection = getHumanChoice()
-        const computerSelection = getComputerChoice()
-        const currentRound = playRound(humanSelection, computerSelection)
-        console.log(currentRound)
-    }
-    
-}
-
+// function playGame() {
+//     for (let i = 0; i < 5; i++) {
+//         const humanSelection = getHumanChoice()
+//         const computerSelection = getComputerChoice()
+//         const currentRound = playRound(humanSelection, computerSelection)
+//         console.log(currentRound)
+//     }
+// }
 // playGame()
+
 
 function sumOfTripledEvens(array) {
   return array
@@ -76,3 +76,12 @@ function sumOfTripledEvens(array) {
     .map((num) => num * 3)
     .reduce((acc, curr) => acc + curr)
 }
+
+const button = document.querySelector(".container-buttons")
+
+function clickButton (event) {
+    alert('rock')
+    console.log(event.target.value)
+}
+
+button.addEventListener("click", getHumanChoice)
